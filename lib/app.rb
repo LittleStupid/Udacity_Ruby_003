@@ -51,7 +51,7 @@ def print_ascii_brand
 	puts
 end
 
-#I am not an artist
+#so hard to draw!
 def print_ascii_sale_report
   puts "--------       -            -             --------      --------  "
   puts "-             -  -          -             -             -         "
@@ -59,7 +59,7 @@ def print_ascii_sale_report
   puts "--------    --------        -             ---------     --------- "
   puts "       -   -         -      -                      -            - "
   puts "       -  -            -    -                      -            - "
-  puts "--------                    ----------    ----------    --------- "
+  puts "-------- -             -    ----------    ----------    --------- "
 end
 #---------------------------------------------------
 
