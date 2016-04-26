@@ -1,3 +1,15 @@
+commit e7631503972d3ac1277ce951691696c973a6f35a
+Author: LittleStupid <lttlstpd@live.com>
+Date:   Tue Apr 26 21:24:18 2016 +0800
+
+    only one function called outside
+
+commit 2499d91220d4e09cf1bec259973bd05df66a6e6d
+Author: LittleStupid <lttlstpd@live.com>
+Date:   Tue Apr 26 19:31:31 2016 +0800
+
+    add log.txt
+
 commit 73dac9cd5cd727539ee56b31f9d29d7fcbbf414e
 Author: LittleStupid <lttlstpd@live.com>
 Date:   Tue Apr 26 19:29:01 2016 +0800
