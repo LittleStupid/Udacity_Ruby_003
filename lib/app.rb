@@ -1,78 +1,59 @@
 require 'json'
 require 'date'
 
-#init
-#---------------------------------------------------
-def setup_files
-    path = File.join(File.dirname(__FILE__), '../data/products.json')
-    file = File.read(path)
-    $products_hash = JSON.parse(file)
-    $report_file = File.new("report.txt", "w+")
-end
-
-def create_report
-  $report_file.puts "report head"
-  $report_file.puts "report content"
-  $report_file.puts "report foot"
-end
-
-def start
-  setup_files # load, read, parse, and create the files
-  create_report # create the report!
-end
-
-
 #---------------------------------------------------
 def print_date
   puts "Date: #{Time.now.strftime("%m-%d-%Y")}"
 end
 #---------------------------------------------------
 
+def print_and_puts( msg = "" )
+  puts msg
+  $report_file.puts msg
+end
+
 #print ascii
 #---------------------------------------------------
 def print_ascii_products
-  puts "                     _            _       "
-  puts "                    | |          | |      "
-  puts " _ __  _ __ ___   __| |_   _  ___| |_ ___ "
-  puts "| '_ \\| '__/ _ \\ / _` | | | |/ __| __/ __|"
-  puts "| |_) | | | (_) | (_| | |_| | (__| |_\\__ \\"
-  puts "| .__/|_|  \\___/ \\__,_|\\__,_|\\___|\\__|___/"
-  puts "| |                                       "
-  puts "|_|                                       "
+  print_and_puts "                     _            _       "
+  print_and_puts "                    | |          | |      "
+  print_and_puts " _ __  _ __ ___   __| |_   _  ___| |_ ___ "
+  print_and_puts "| '_ \\| '__/ _ \\ / _` | | | |/ __| __/ __|"
+  print_and_puts "| |_) | | | (_) | (_| | |_| | (__| |_\\__ \\"
+  print_and_puts "| .__/|_|  \\___/ \\__,_|\\__,_|\\___|\\__|___/"
+  print_and_puts "| |                                       "
+  print_and_puts "|_|                                       "
 end
 
 def print_ascii_brand
-	puts " _                         _     "
-	puts "| |                       | |    "
-	puts "| |__  _ __ __ _ _ __   __| |___ "
-	puts "| '_ \\| '__/ _` | '_ \\ / _` / __|"
-	puts "| |_) | | | (_| | | | | (_| \\__ \\"
-	puts "|_.__/|_|  \\__,_|_| |_|\\__,_|___/"
-	puts
+	print_and_puts " _                         _     "
+	print_and_puts "| |                       | |    "
+	print_and_puts "| |__  _ __ __ _ _ __   __| |___ "
+	print_and_puts "| '_ \\| '__/ _` | '_ \\ / _` / __|"
+	print_and_puts "| |_) | | | (_| | | | | (_| \\__ \\"
+	print_and_puts "|_.__/|_|  \\__,_|_| |_|\\__,_|___/"
+	print_and_puts
 end
 
 #so hard to draw!
 def print_ascii_sale_report
-  puts "--------       -            -             --------      --------  "
-  puts "-             -  -          -             -             -         "
-  puts "-            -    -         -             -             -         "
-  puts "--------    --------        -             ---------     --------- "
-  puts "       -   -         -      -                      -            - "
-  puts "       -  -            -    -                      -            - "
-  puts "-------- -             -    ----------    ----------    --------- "
+  print_and_puts  "#####                                 ######                                     "
+  print_and_puts  "#     #   ##   #      ######  ####     #     # ###### #####   ####  #####  ##### "
+  print_and_puts  "#        #  #  #      #      #         #     # #      #    # #    # #    #   #   "
+  print_and_puts  "#####  #    # #      #####   ####     ######  #####  #    # #    # #    #   #    "
+  print_and_puts  "     # ###### #      #           #    #   #   #      #####  #    # #####    #    "
+  print_and_puts  "#    # #    # #      #      #    #    #    #  #      #      #    # #   #    #    "
+  print_and_puts  "#####  #    # ###### ######  ####     #     # ###### #       ####  #    #   #    "
 end
 #---------------------------------------------------
 
-start()
+
 
 # Print "Sales Report" in ascii art
-print_ascii_sale_report
 
 # Print today's date
-print_date
 
 # Print "Products" in ascii art
-print_ascii_products
 
 # For each product in the data set:
 	# Print the name of the toy
@@ -82,7 +63,7 @@ print_ascii_products
 	# Calculate and print the average price the toy sold for
 	# Calculate and print the average discount (% or $) based off the average sales price
   def print_name_and_value( the_name, the_value )
-    puts the_name + the_value
+    print_and_puts( the_name + the_value )
   end
   
   def print_bar
@@ -127,11 +108,11 @@ print_ascii_products
     end
   end
   
-  print_product_report
+  
   #--------------------------------------------------------------
   
 # Print "Brands" in ascii art
-print_ascii_brand
+
 
 # For each brand in the data set:
 	# Print the name of the brand
@@ -179,12 +160,12 @@ print_ascii_brand
     brand_name = group_by_brand
   
       brand_name.each do |name|
-        puts "Brand : " + name
+        print_name_and_value( "Brand : ", name )
     
         by_brand = get_brand( name )
     
         stock = get_total_stock( by_brand )
-        puts "Stock : " + stock.to_s
+        print_name_and_value( "Stock : ", stock.to_s )
     
         sold_num = get_sold_num( by_brand )
         total_price = get_total_price( by_brand )
@@ -199,8 +180,36 @@ print_ascii_brand
     
   end
   #--------------------------------------------------------------
+
+#init
+#---------------------------------------------------
+def setup_files
+    path = File.join(File.dirname(__FILE__), '../data/products.json')
+    file = File.read(path)
+    $products_hash = JSON.parse(file)
+    $report_file = File.new("report.txt", "w+")
+end
+
+def create_report
+  print_ascii_sale_report
+  print_date
+
+  print_ascii_products
+  print_product_report
   
+  print_ascii_brand
   print_brand_report
+end
+
+def start
+  setup_files # load, read, parse, and create the files
+  create_report # create the report!
+end
 
 
- 
+
+  
+  
+
+
+ start()
