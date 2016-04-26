@@ -101,18 +101,25 @@ print_ascii_products
     ( full_price - price ).round(3)
   end
   
+  def get_product_num( items )
+    num = items["purchases"].length
+  end
+  
+  def get_product_average_price( items )
+    num = get_product_num( items )
+    total_amount = get_sum_price( items["purchases"] )
+    average_price = get_average( total_amount, num )
+  end
   #--------------------------------------------------------------  
   def print_product_report
     $products_hash["items"].each do |items|  
       print_name_and_value( "Name : ", items["title"] )
       print_name_and_value( "retail price : ", items["full-price"] )
     
-      num = items["purchases"].length
-      total_amount = get_sum_price( items["purchases"] )
-      average_price = get_average( total_amount, num )
+      average_price = get_product_average_price(items)
   
-      print_name_and_value( "Total number purchased : ", num.to_s )
-      print_name_and_value( "Total amount sold : ", total_amount.to_s )
+      print_name_and_value( "Total number purchased : ", get_product_num(items).to_s )
+      print_name_and_value( "Total amount sold : ", get_sum_price( items["purchases"] ).to_s )
       print_name_and_value( "Average price : ", average_price.to_s )
       print_name_and_value( "Discount : $", ( get_discount( items["full-price"].to_f, average_price ) ).to_s )
       
